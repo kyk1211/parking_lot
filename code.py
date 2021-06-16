@@ -13,7 +13,12 @@ queryParams += '&numOfRows=' + rows
 queryParams += '&type=' +type
 req = request.Request(url + queryParams)
 response = request.urlopen(req).read().decode('utf-8')
-
 json_data = json.loads(response)
+
+addr = []
+lat = []
+lon = []
 for i in range(len(json_data['response']['body']['items'])):
-    print(json_data['response']['body']['items'][i]['lnmadr'])
+    addr.append(json_data['response']['body']['items'][i]['lnmadr'])
+    lat.append(json_data['response']['body']['items'][i]['latitude'])
+    lon.append(json_data['response']['body']['items'][i]['longitude'])
